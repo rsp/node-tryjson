@@ -12,7 +12,13 @@
   },
   "keywords": [
     "json",
-    "parse"
+    "parse",
+    "try",
+    "catch",
+    "try/catch",
+    "exception",
+    "exceptions",
+    "throw"
   ],
   "author": "Rafał Pocztarski <r.pocztarski@gmail.com> (https://rsp.github.io/)",
   "license": "MIT",
