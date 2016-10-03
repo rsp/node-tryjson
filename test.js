@@ -4,17 +4,17 @@ var test = require('tape');
 var tryjson = require('.');
 
 test('valid json', function (t) {
-    var obj, json = [
-        '{"a":1,"b":2}',
-        '["a",2,3,null]'
+    var obj, objs = [
+        {a: 1, b: 2},
+        ["a", 2, 3, null],
     ];
-    t.plan(4);
-    obj = tryjson.parse(json[0]);
-    t.equal(typeof obj, 'object', 'should be object');
-    t.deepEqual(obj, JSON.parse(json[0]), 'should return correct data');
-    obj = tryjson.parse(json[1]);
-    t.ok(Array.isArray(obj), 'should be array');
-    t.deepEqual(obj, JSON.parse(json[1]), 'should return correct data');
+    t.plan(3 * objs.length);
+    objs.forEach(function (o) {
+        obj = tryjson.parse(JSON.stringify(o));
+        t.equal(typeof o, typeof obj, 'should have the same type');
+        t.equal(Array.isArray(o), Array.isArray(obj), 'should have the same array status');
+        t.deepEqual(o, obj, 'should be deeply equal');
+    });
 });
 
 test('invalid json', function (t) {
