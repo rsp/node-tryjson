@@ -1,7 +1,7 @@
 'use strict';
 
 var test = require('tape');
-var tryjson = require('.');
+var tryjson = require('./index');
 
 test('valid json', function (t) {
     var obj, objs = [
