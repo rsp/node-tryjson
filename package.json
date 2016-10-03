@@ -4,7 +4,7 @@
   "description": "Try to parse a string as JSON and return undefined on failure",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "./node_modules/covert/bin/cmd.js test.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/rsp/node-tryjson#readme",
   "devDependencies": {
+    "covert": "^1.1.0",
     "tape": "^4.6.2"
   }
 }
