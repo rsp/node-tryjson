@@ -6,6 +6,8 @@ node tryjson
 
 This module works like `JSON.parse` (and in fact it uses `JSON.parse`) but instead of throwing exceptions it returns `undefined` on failure. This is not always a desired behaviour but sometimes it is.
 
+This is still work in progress.
+
 Installation
 ------------
 Install to use in your Node project, updating the dependencies in package.json:
