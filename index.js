@@ -8,6 +8,8 @@ function parse(json) {
     }
 }
 
+function x() { 1; }
+
 module.exports = {
     parse: parse,
 };
