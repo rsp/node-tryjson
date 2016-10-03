@@ -1,0 +1,23 @@
+{
+  "name": "tryjson",
+  "version": "0.0.0",
+  "description": "Try to parse a string as JSON and return undefined on failure",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rsp/node-tryjson.git"
+  },
+  "keywords": [
+    "json",
+    "parse"
+  ],
+  "author": "Rafał Pocztarski <r.pocztarski@gmail.com> (https://rsp.github.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rsp/node-tryjson/issues"
+  },
+  "homepage": "https://github.com/rsp/node-tryjson#readme"
+}
