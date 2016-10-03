@@ -2,6 +2,8 @@ node tryjson
 ============
 [![tryjson](https://nodei.co/npm/tryjson.png?compact=true)](https://www.npmjs.com/package/tryjson)
 
+[![Build Status](https://travis-ci.org/rsp/node-tryjson.svg?branch=master)](https://travis-ci.org/rsp/node-tryjson)
+
 This module works like `JSON.parse` (and in fact it uses `JSON.parse`) but instead of throwing exceptions it returns `undefined` on failure. This is not always a desired behaviour but sometimes it is.
 
 Installation
