@@ -2,7 +2,20 @@ node tryjson
 ============
 [![tryjson](https://nodei.co/npm/tryjson.png?compact=true)](https://www.npmjs.com/package/tryjson)
 
-work in progress ...
+Examples
+--------
+
+Basic usage:
+
+```js
+var tryjson = require('tryjson');
+
+console.log(tryjson.parse('{"a":1,"b":2}'));
+// { a: 1, b: 2 }
+
+console.log(tryjson.parse('{"a":1,"b":2'));
+// undefined
+```
 
 Issues
 ------
