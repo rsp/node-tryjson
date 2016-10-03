@@ -23,15 +23,18 @@ test('valid json', function (t) {
     ];
     t.plan(3 * objs.length);
     objs.forEach(function (o) {
-        obj = tryjson.parse(JSON.stringify(o));
-        t.equal(typeof o, typeof obj, 'should have the same type');
-        t.equal(Array.isArray(o), Array.isArray(obj), 'should have the same array status');
-        t.deepEqual(o, obj, 'should be deeply equal');
+        var json = JSON.stringify(o);
+        obj = tryjson.parse(json);
+        t.equal(typeof o, typeof obj, json + ' should have the same type');
+        t.equal(Array.isArray(o), Array.isArray(obj), json + ' should have the same array status');
+        t.deepEqual(o, obj, json + ' should be deeply equal');
     });
 });
 
 test('invalid json', function (t) {
     var obj, json = [
+        'nul',
+        "{'a':1,'b':2}",
         '{"a":1,"b"}',
         '["a",2,3,nul]',
         '{a:1,b:2}',
@@ -41,6 +44,6 @@ test('invalid json', function (t) {
     t.plan(json.length);
     json.forEach(function (s) {
         obj = tryjson.parse(s);
-        t.ok(obj === undefined, 'should be undefined');
+        t.ok(obj === undefined, s + ' should be undefined');
     });
 });
