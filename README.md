@@ -2,9 +2,10 @@ node tryjson
 ============
 [![tryjson](https://nodei.co/npm/tryjson.png?compact=true)](https://www.npmjs.com/package/tryjson)
 
+This module works like `JSON.parse` (and in fact it uses `JSON.parse`) but instead of throwing exceptions it returns `undefined` on failure. This is not always a desired behaviour but sometimes it is.
+
 Examples
 --------
-
 Basic usage:
 
 ```js
