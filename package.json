@@ -4,7 +4,7 @@
   "description": "Try to parse a string as JSON and return undefined on failure",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/rsp/node-tryjson/issues"
   },
-  "homepage": "https://github.com/rsp/node-tryjson#readme"
+  "homepage": "https://github.com/rsp/node-tryjson#readme",
+  "devDependencies": {
+    "tape": "^4.6.2"
+  }
 }
