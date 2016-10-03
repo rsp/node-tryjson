@@ -5,8 +5,21 @@ var tryjson = require('.');
 
 test('valid json', function (t) {
     var obj, objs = [
+        null,
+        '',
+        'txt',
+        6,
+        -0.2,
+        1e6,
+        1/3,
+        [],
+        {},
+        true,
+        false,
+        [[[[[1]]]]],
         {a: 1, b: 2},
         ["a", 2, 3, null],
+        [{a:1},{b:2},{c:[[3]]}],
     ];
     t.plan(3 * objs.length);
     objs.forEach(function (o) {
