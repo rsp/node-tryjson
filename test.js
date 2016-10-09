@@ -3,7 +3,7 @@
 var test = require('tape');
 var tryjson = require('./index');
 
-test('valid json', function (t) {
+test('parsing valid json', function (t) {
     var obj, objs = [
         null,
         '',
@@ -31,7 +31,7 @@ test('valid json', function (t) {
     });
 });
 
-test('invalid json', function (t) {
+test('parsing invalid json', function (t) {
     var obj, json = [
         'nul',
         "{'a':1,'b':2}",
@@ -45,5 +45,50 @@ test('invalid json', function (t) {
     json.forEach(function (s) {
         obj = tryjson.parse(s);
         t.ok(obj === undefined, s + ' should be undefined');
+    });
+});
+
+test('strigifying valid objects', function (t) {
+    var obj, objs = [
+        null,
+        '',
+        'txt',
+        6,
+        -0.2,
+        1e6,
+        1/3,
+        [],
+        {},
+        true,
+        false,
+        [[[[[1]]]]],
+        {a: 1, b: 2},
+        ["a", 2, 3, null],
+        [{a:1},{b:2},{c:[[3]]}],
+    ];
+    t.plan(3 * objs.length);
+    objs.forEach(function (o) {
+        var json = tryjson.stringify(o);
+        obj = JSON.parse(json);
+        t.equal(typeof o, typeof obj, json + ' should have the same type');
+        t.equal(Array.isArray(o), Array.isArray(obj), json + ' should have the same array status');
+        t.deepEqual(o, obj, json + ' should be deeply equal');
+    });
+});
+
+test('strigifying invalid objects', function (t) {
+    var obj, json, objs = [
+        {n: 1},
+        {n: 2},
+        {n: 3},
+    ];
+    t.plan(objs.length);
+    objs[0].a = objs[0];
+    objs[1].a = [[[[[[[[[[objs[2]]]]]]]]]]];
+    objs[2].a = {a: {a: {a: {a: {a: objs[1]}}}}};
+    objs.forEach(function (s) {
+        json = tryjson.stringify(s);
+        obj = JSON.parse(json);
+        t.ok(obj === null, 'circular object ' + s.n + ' should be null');
     });
 });
