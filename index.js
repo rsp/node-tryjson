@@ -8,8 +8,15 @@ function parse(json) {
     }
 }
 
-function x() { 1; }
+function stringify(object) {
+    try {
+        return JSON.stringify(object);
+    } catch (e) {
+        return "null";
+    }
+}
 
 module.exports = {
     parse: parse,
+    stringify: stringify,
 };
