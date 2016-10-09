@@ -7,7 +7,7 @@ node tryjson
 
 This module works like `JSON.parse` (and in fact it uses `JSON.parse`) but instead of throwing exceptions it returns `undefined` on failure. This is not always a desired behaviour but sometimes it is.
 
-This is still work in progress.
+There is also a `stringify` method that works like `JSON.stringify` but instead of throwing exceptions on circular structures it returns `"null"` - which, again, may not be what you always want but sometime it is and use can use this module to simplify your code in those cases.
 
 Installation
 ------------
@@ -20,6 +20,7 @@ Examples
 --------
 Basic usage:
 
+Parsing:
 ```js
 var tryjson = require('tryjson');
 
@@ -28,6 +29,18 @@ console.log(tryjson.parse('{"a":1,"b":2}'));
 
 console.log(tryjson.parse('{"a":1,"b":2'));
 // undefined
+```
+
+Stringification:
+```js
+var tryjson = require('tryjson');
+
+var x = {a: 1};
+console.log(tryjson.stringify(x));
+// '{"a":1}'
+x.b = x;
+console.log(tryjson.stringify(x));
+// 'null'
 ```
 
 Issues
