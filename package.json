@@ -4,8 +4,7 @@
   "description": "Try to parse a string as JSON and return undefined on failure",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js",
-    "coveralls": "./node_modules/browserify/bin/cmd.js -t coverify test.js | node | ./node_modules/coverify-lcov/bin/cmd.js | ./node_modules/coveralls/bin/coveralls.js"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
@@ -37,7 +36,6 @@
   },
   "homepage": "https://github.com/rsp/node-tryjson#readme",
   "devDependencies": {
-    "coveralls": "^2.11.14",
     "covert": "^1.1.0",
     "tape": "^4.6.2"
   }
