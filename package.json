@@ -12,14 +12,23 @@
     "url": "git+https://github.com/rsp/node-tryjson.git"
   },
   "keywords": [
+    "invalid",
+    "circular",
     "json",
     "parse",
+    "stringify",
+    "serialize",
+    "parsing",
+    "serialization",
+    "stringification",
     "try",
     "catch",
     "try/catch",
     "exception",
     "exceptions",
-    "throw"
+    "throw",
+    "null",
+    "undefined"
   ],
   "author": "Rafał Pocztarski <r.pocztarski@gmail.com> (https://rsp.github.io/)",
   "license": "MIT",
