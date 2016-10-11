@@ -1,9 +1,34 @@
 node tryjson
 ============
-[![tryjson](https://nodei.co/npm/tryjson.png?compact=true)](https://www.npmjs.com/package/tryjson)
 
-[![Build Status](https://travis-ci.org/rsp/node-tryjson.svg?branch=master)](https://travis-ci.org/rsp/node-tryjson)
-[![Coverage Status](https://coveralls.io/repos/github/rsp/node-tryjson/badge.svg?branch=master)](https://coveralls.io/github/rsp/node-tryjson?branch=master)
+[![npm install][install-img]][npm-url]
+<br>
+[![Build Status][travis-img]][travis-url]
+[![Known Vulnerabilities][snyk-img]][snyk-url]
+[![Downloads][downloads-img]][stats-url]
+[![License][license-img]][license-url]
+
+[npm-url]: https://www.npmjs.com/package/tryjson
+[github-url]: https://github.com/rsp/node-tryjson
+[readme-url]: https://github.com/rsp/node-tryjson#readme
+[issues-url]: https://github.com/rsp/node-tryjson/issues
+[license-url]: https://github.com/rsp/node-tryjson/blob/master/LICENSE.md
+[travis-url]: https://travis-ci.org/rsp/node-tryjson
+[travis-img]: https://travis-ci.org/rsp/node-tryjson.svg?branch=master
+[snyk-url]: https://snyk.io/test/github/rsp/node-tryjson
+[snyk-img]: https://snyk.io/test/github/rsp/node-tryjson/badge.svg
+[install-img]: https://nodei.co/npm/tryjson.png?compact=true
+[downloads-img]: https://img.shields.io/npm/dt/tryjson.svg
+[license-img]: https://img.shields.io/npm/l/tryjson.svg
+[stats-url]: http://npm-stat.com/charts.html?package=tryjson
+[github-follow-url]: https://github.com/rsp
+[github-follow-img]: https://img.shields.io/github/followers/rsp.svg?style=social&label=Follow
+[twitter-follow-url]: https://twitter.com/intent/follow?screen_name=pocztarski
+[twitter-follow-img]: https://img.shields.io/twitter/follow/pocztarski.svg?style=social&label=Follow
+[stackoverflow-url]: https://stackoverflow.com/users/613198/rsp
+[stackexchange-url]: https://stackexchange.com/users/303952/rsp
+[stackexchange-img]: https://stackexchange.com/users/flair/303952.png
+
 
 This module works like `JSON.parse` (and in fact it uses `JSON.parse`) but instead of throwing exceptions it returns `undefined` on failure. This is not always a desired behaviour but sometimes it is.
 
