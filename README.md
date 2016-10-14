@@ -34,7 +34,7 @@ node tryjson
 
 Why
 ---
-Not everyone knows that you should **always** run `JSON.parse` inside of the `try/catch` block or otherwise you risk your application crashing on bad input. Most of the examples of using `JSON.parse` that I see online never does that. People usually assume that you will get `undefined` on bad or empty input but you don't.
+Not everyone knows that you should **always** run `JSON.parse` inside of a `try/catch` block or otherwise you risk your application crashing on bad input. Most of the examples of using `JSON.parse` posted online never does that. People usually assume that you will get `undefined` on bad or empty input but you don't.
 
 **Remember: Always `try { JSON.parse() }` or use `tryjson.parse()`**
 
@@ -70,11 +70,29 @@ This module works like `JSON.parse` (and in fact it uses `JSON.parse`) but inste
 
 There is also a `stringify` method that works like `JSON.stringify` but instead of throwing exceptions on circular structures it returns `"null"` (or a JSON representation of some other fallback value if provided) - which, again, may not be what you always want but sometime it is and you can use this module to simplify your code in those cases.
 
+Methods
+-------
+### `parse(string)`
+
+Returns the result of parsing `string` as JSON or `undefined` if it cannot be parsed.
+
+### `parse(string, fallback)`
+
+Returns the result of parsing `string` as JSON or the value of `fallback` if it cannot be parsed.
+
+### `stringify(value)`
+
+Returns the JSON representation of `value` or the JSON representation of `null` if `value` cannot be represented as JSON (e.g. contains circular references).
+
+### `stringify(value, fallback)`
+
+Returns the JSON representation of `value` or the JSON representation of `fallback` if `value` cannot be represented as JSON (or the JSON representation of `null` if `fallback` cannot be represented as JSON as well).
+
 Rationale
 ---------
 Why `tryjson.parse` returns `undefined` for invalid JSON by default? Because a valid JSON can never be parsed to `undefined` so you can test it reliably for that value with `value === undefined` to know if it was invalid. You can specify a custom fallback value as a second argument.
 
-Why `tryjson.stringify` returns `"null"` for objects that cannot be serialized by default? Because `"null"` is a valid JSON string so it can always be parsed without errors and is still easy to test for `null` value. Note that this time, getting "null" does not necessarily mean that the object couldn't be serialized because it might have been `null` as well. You can specify a custom fallback value as a second argument - it will be stringified to JSON if possible, or the string `"null"` will be returned. It always returns a valid JSON string.
+Why `tryjson.stringify` returns `"null"` for objects that cannot be serialized by default? Because `"null"` is a valid JSON string so it can always be parsed without errors and is still easy to test for `null` value. Note that this time, getting "null" does not necessarily mean that the object couldn't be serialized because it might have been originally equal to `null` as well. You can specify a custom fallback value as a second argument - it will be stringified to JSON if possible, or the string `"null"` will be returned. It always returns a valid JSON string.
 
 Installation
 ------------
