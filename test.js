@@ -40,6 +40,8 @@ test('parsing invalid json', function (t) {
         '{a:1,b:2}',
         '[1,2,3',
         '',
+        JSON,
+        0/0
     ];
     t.plan(json.length);
     json.forEach(function (s) {
@@ -81,14 +83,17 @@ test('strigifying invalid objects', function (t) {
         {n: 1},
         {n: 2},
         {n: 3},
+        null,
+        0/0,
+        undefined
     ];
     t.plan(objs.length);
     objs[0].a = objs[0];
     objs[1].a = [[[[[[[[[[objs[2]]]]]]]]]]];
     objs[2].a = {a: {a: {a: {a: {a: objs[1]}}}}};
-    objs.forEach(function (s) {
+    objs.forEach(function (s, i) {
         json = tryjson.stringify(s);
         obj = JSON.parse(json);
-        t.ok(obj === null, 'circular object ' + s.n + ' should be null');
+        t.ok(obj === null, 'object ' + i + ' should be null');
     });
 });
