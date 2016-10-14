@@ -1,19 +1,19 @@
 'use strict';
 
-function parse(json) {
+function parse(json, fallback) {
     try {
         return JSON.parse(json);
     } catch (e) {
-        return undefined;
+        return fallback;
     }
 }
 
-function stringify(object) {
+function stringify(object, fallback) {
     try {
         if (object === undefined) throw undefined;
         return JSON.stringify(object);
     } catch (e) {
-        return "null";
+        return JSON.stringify(fallback === undefined ? null : fallback);
     }
 }
 
