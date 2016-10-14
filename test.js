@@ -44,7 +44,6 @@ test('parsing invalid json', function (t) {
         0/0
     ], fallback = [
         'no fallback',
-        'invalid fallback',
         0,
         null,
         false,
@@ -60,9 +59,6 @@ test('parsing invalid json', function (t) {
             if (f === 'no fallback') {
                 obj = tryjson.parse(s);
                 t.ok(obj === undefined, s + ' should be parsed to undefined');
-            } else if (f === 'invalid fallback') {
-                obj = tryjson.parse(s, invalid);
-                t.ok(obj === undefined, s + ' with invalid fallback should be parsed to undefined');
             } else {
                 obj = tryjson.parse(s, f);
                 t.ok(obj === f, s + ' should be parsed to fallback');
