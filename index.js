@@ -10,6 +10,7 @@ function parse(json) {
 
 function stringify(object) {
     try {
+        if (object === undefined) throw undefined;
         return JSON.stringify(object);
     } catch (e) {
         return "null";
