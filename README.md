@@ -141,6 +141,10 @@ tryjson.stringify(x, {err: 'bad object'});
 x.b = x;
 tryjson.stringify(x, {err: 'bad object'});
 // returns string: '{"err":"bad object"}'
+
+// invalid object and invalid fallback:
+tryjson.stringify(x, x);
+// returns string: 'null'
 ```
 
 Issues
