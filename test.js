@@ -94,13 +94,26 @@ test('strigifying valid objects', function (t) {
     });
 });
 
+test('strigifying valid objects that should be null', function (t) {
+    var obj, objs = [
+        null,
+        0/0,
+        1/0,
+        -1/0
+    ];
+    t.plan(objs.length);
+    objs.forEach(function (o) {
+        var json = tryjson.stringify(o);
+        obj = JSON.parse(json);
+        t.deepEqual(null, obj, json + ' should be deeply equal to null');
+    });
+});
+
 test('strigifying invalid objects', function (t) {
     var obj, json, objs = [
         {n: 1},
         {n: 2},
         {n: 3},
-        null,
-        0/0,
         undefined
     ], fallback = [
         'no fallback',
@@ -109,10 +122,8 @@ test('strigifying invalid objects', function (t) {
         0,
         null,
         false,
-        undefined,
         '',
-        {a: 1},
-        JSON
+        {a: 1}
     ], invalid = {a: 1};
     invalid.b = invalid;
     t.plan(objs.length * fallback.length);
@@ -120,7 +131,7 @@ test('strigifying invalid objects', function (t) {
     objs[1].a = [[[[[[[[[[objs[2]]]]]]]]]]];
     objs[2].a = {a: {a: {a: {a: {a: objs[1]}}}}};
     objs.forEach(function (s, i) {
-        fallback.forEach(function (f) {
+        fallback.forEach(function (f, j) {
             if (f === 'no fallback') {
                 json = tryjson.stringify(s);
                 obj = JSON.parse(json);
@@ -134,9 +145,9 @@ test('strigifying invalid objects', function (t) {
                 obj = JSON.parse(json);
                 t.ok(obj === null, 'object ' + i + ' should be null with invalid fallback');
             } else {
-                json = tryjson.stringify(s, invalid);
+                json = tryjson.stringify(s, f);
                 obj = JSON.parse(json);
-                t.ok(obj === f, 'object ' + i + ' should be equal to fallback');
+                t.deepEqual(obj, f, 'object ' + i + ' should be equal to fallback ' + j);
             }
         });
     });
