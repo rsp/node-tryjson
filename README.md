@@ -91,11 +91,11 @@ Basic usage:
 ```js
 var tryjson = require('tryjson');
 
-console.log(tryjson.parse('{"a":1,"b":2}'));
-// { a: 1, b: 2 }
+tryjson.parse('{"a":1,"b":2}');
+// returns object: { a: 1, b: 2 }
 
-console.log(tryjson.parse('{"a":1,"b":2'));
-// undefined
+tryjson.parse('{"a":1,"b":2');
+// returns value: undefined
 ```
 
 ### Stringification
@@ -103,11 +103,11 @@ console.log(tryjson.parse('{"a":1,"b":2'));
 var tryjson = require('tryjson');
 
 var x = {a: 1};
-console.log(tryjson.stringify(x));
-// '{"a":1}'
+tryjson.stringify(x);
+// returns string: '{"a":1}'
 x.b = x;
-console.log(tryjson.stringify(x));
-// 'null'
+tryjson.stringify(x);
+// returns string: 'null'
 ```
 
 ### Testing returned values
@@ -129,20 +129,18 @@ if (!object) {
 
 ### Custom fallback values:
 ```js
-var tryjson = require('tryjson');
+tryjson.parse('{"a":1,"b":2}', {err: 'bad json'});
+// returns object: { a: 1, b: 2 }
 
-console.log(tryjson.parse('{"a":1,"b":2}', {err: 'bad json'}));
-// { a: 1, b: 2 }
-
-console.log(tryjson.parse('{"a":1,"b":2', {err: 'bad json'}));
-// { err: 'bad json' }
+tryjson.parse('{"a":1,"b":2', {err: 'bad json'});
+// returns objects: { err: 'bad json' }
 
 var x = {a: 1};
-console.log(tryjson.stringify(x, {err: 'bad object'}));
-// {"a":1}
+tryjson.stringify(x, {err: 'bad object'});
+// returns string: '{"a":1}'
 x.b = x;
-console.log(tryjson.stringify(x, {err: 'bad object'}));
-// {"err":"bad object"}
+tryjson.stringify(x, {err: 'bad object'});
+// returns string: '{"err":"bad object"}'
 ```
 
 Issues
