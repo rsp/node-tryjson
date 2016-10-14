@@ -137,11 +137,13 @@ if (object === undefined) {
 }
 
 if (object == null) {
-  // the string was either invalid JSON or "null"
+  // the string was either invalid JSON
+  // or "null"
 }
 
 if (!object) {
-  // the string was either invalid JSON, "null", "false" or "0"
+  // the string was either invalid JSON,//
+  // "null", "false" or "0"
 }
 ```
 
@@ -151,7 +153,7 @@ tryjson.parse('{"a":1,"b":2}', {err: 'bad json'});
 // returns object: { a: 1, b: 2 }
 
 tryjson.parse('{"a":1,"b":2', {err: 'bad json'});
-// returns objects: { err: 'bad json' }
+// returns object: { err: 'bad json' }
 
 var x = {a: 1};
 tryjson.stringify(x, {err: 'bad object'});
