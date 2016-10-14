@@ -36,7 +36,33 @@ Why
 ---
 Not everyone knows that you should **always** run `JSON.parse` inside of the `try/catch` block or otherwise you risk your application crashing on bad input. Most of the examples of using `JSON.parse` that I see online never does that. People usually assume that you will get `undefined` on bad or empty input but you don't.
 
-This module works like many people assume that the built-in `JSON` works and can simplify some common code.
+**Remember: Always `try { JSON.parse() }` or use `tryjson.parse()`**
+
+This module works like many people assume that the built-in `JSON` works and can simplify some common code. People usually write:
+```js
+object = JSON.parse(string);
+```
+when they mean:
+```js
+try {
+  object = JSON.parse(string);
+} catch (e) {
+  object = undefined;
+}
+```
+and now they can write it as:
+```js
+object = tryjson.parse(string);
+```
+or even as:
+```js
+object = JSON.parse(string);
+```
+if you want to locally override `JSON` with:
+
+```js
+var JSON = require('tryjson);
+```
 
 How it works
 ------------
