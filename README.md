@@ -4,6 +4,7 @@ node tryjson
 [![npm install][install-img]][npm-url]
 <br>
 [![Build Status][travis-img]][travis-url]
+[![Dependencies Status][david-img]][david-url]
 [![Known Vulnerabilities][snyk-img]][snyk-url]
 [![Downloads][downloads-img]][stats-url]
 [![License][license-img]][license-url]
@@ -17,6 +18,8 @@ node tryjson
 [travis-img]: https://travis-ci.org/rsp/node-tryjson.svg?branch=master
 [snyk-url]: https://snyk.io/test/github/rsp/node-tryjson
 [snyk-img]: https://snyk.io/test/github/rsp/node-tryjson/badge.svg
+[david-url]: https://david-dm.org/rsp/node-tryjson
+[david-img]: https://david-dm.org/rsp/node-tryjson/status.svg
 [install-img]: https://nodei.co/npm/tryjson.png?compact=true
 [downloads-img]: https://img.shields.io/npm/dt/tryjson.svg
 [license-img]: https://img.shields.io/npm/l/tryjson.svg
@@ -29,7 +32,14 @@ node tryjson
 [stackexchange-url]: https://stackexchange.com/users/303952/rsp
 [stackexchange-img]: https://stackexchange.com/users/flair/303952.png
 
+Why
+---
+Not everyone knows that you should **always** run `JSON.parse` inside of the `try/catch` block or otherwise you risk your application crashing on bad input. Most of the examples of using `JSON.parse` that I see online never does that. People usually assume that you will get `undefined` on bad or empty input but you don't.
 
+This module works like many people assume that the built-in `JSON` works and can simplify some common code.
+
+How it works
+------------
 This module works like `JSON.parse` (and in fact it uses `JSON.parse`) but instead of throwing exceptions it returns `undefined` on failure. This is not always a desired behaviour but sometimes it is.
 
 There is also a `stringify` method that works like `JSON.stringify` but instead of throwing exceptions on circular structures it returns `"null"` - which, again, may not be what you always want but sometime it is and you can use this module to simplify your code in those cases.
