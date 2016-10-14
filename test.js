@@ -97,3 +97,30 @@ test('strigifying invalid objects', function (t) {
         t.ok(obj === null, 'object ' + i + ' should be null');
     });
 });
+
+test('parsing invalid json with fallback', function (t) {
+    var obj, json = [
+        'nul',
+        "{'a':1,'b':2}",
+        '{"a":1,"b"}',
+        '["a",2,3,nul]',
+        '{a:1,b:2}',
+        '[1,2,3',
+        '',
+        JSON,
+        0/0
+    ], fallback = [
+        null,
+        undefined,
+        '',
+        {a: 1},
+        JSON
+    ];
+    t.plan(json.length * fallback.length);
+    json.forEach(function (s) {
+        fallback.forEach( function (f) {
+            obj = tryjson.parse(s, f);
+            t.ok(obj === f, s + ' should be parsed to fallback');
+        });
+    });
+});
