@@ -66,15 +66,15 @@ var JSON = require('tryjson');
 
 How it works
 ------------
-This module works like `JSON.parse` (and in fact it uses `JSON.parse`) but instead of throwing exceptions it returns `undefined` on failure. This is not always a desired behaviour but sometimes it is.
+This module works like `JSON.parse` (and in fact it uses `JSON.parse`) but instead of throwing exceptions it returns `undefined` on failure (or some other fallback value if provided). This is not always a desired behaviour but sometimes it is.
 
-There is also a `stringify` method that works like `JSON.stringify` but instead of throwing exceptions on circular structures it returns `"null"` - which, again, may not be what you always want but sometime it is and you can use this module to simplify your code in those cases.
+There is also a `stringify` method that works like `JSON.stringify` but instead of throwing exceptions on circular structures it returns `"null"` (or a JSON representation of some other fallback value if provided) - which, again, may not be what you always want but sometime it is and you can use this module to simplify your code in those cases.
 
 Rationale
 ---------
-Why `tryjson.parse` returns `undefined` for invalid JSON? Because a valid JSON can never be parsed to `undefined` so you can test it reliably for that value with `value === undefined` to know if it was invalid.
+Why `tryjson.parse` returns `undefined` for invalid JSON by default? Because a valid JSON can never be parsed to `undefined` so you can test it reliably for that value with `value === undefined` to know if it was invalid. You can specify a custom fallback value as a second argument.
 
-Why `tryjson.stringify` returns `"null"` for objects that cannot be serialized? Because `"null"` is a valid JSON string so it can always be parsed without errors and is still easy to test for `null` value. Note that this time, getting "null" does not necessarily mean that the object couldn't be serialized because it might have been `null` as well.
+Why `tryjson.stringify` returns `"null"` for objects that cannot be serialized by default? Because `"null"` is a valid JSON string so it can always be parsed without errors and is still easy to test for `null` value. Note that this time, getting "null" does not necessarily mean that the object couldn't be serialized because it might have been `null` as well. You can specify a custom fallback value as a second argument - it will be stringified to JSON if possible, or the string `"null"` will be returned. It always returns a valid JSON string.
 
 Installation
 ------------
@@ -125,6 +125,24 @@ if (object == null) {
 if (!object) {
   // the string was either invalid JSON, "null", "false" or "0"
 }
+```
+
+### Custom fallback values:
+```js
+var tryjson = require('tryjson');
+
+console.log(tryjson.parse('{"a":1,"b":2}', {err: 'bad json'}));
+// { a: 1, b: 2 }
+
+console.log(tryjson.parse('{"a":1,"b":2', {err: 'bad json'}));
+// { err: 'bad json' }
+
+var x = {a: 1};
+console.log(tryjson.stringify(x, {err: 'bad object'}));
+// {"a":1}
+x.b = x;
+console.log(tryjson.stringify(x, {err: 'bad object'}));
+// {"err":"bad object"}
 ```
 
 Issues
