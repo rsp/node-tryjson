@@ -13,7 +13,7 @@ function stringify(object, fallback) {
         if (object === undefined) throw undefined;
         return JSON.stringify(object);
     } catch (e) {
-        return JSON.stringify(fallback === undefined ? null : fallback);
+        return fallback === undefined ? JSON.stringify(null) : stringify(fallback);
     }
 }
 
