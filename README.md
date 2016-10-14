@@ -61,7 +61,7 @@ object = JSON.parse(string);
 if you want to locally override `JSON` with:
 
 ```js
-var JSON = require('tryjson);
+var JSON = require('tryjson');
 ```
 
 How it works
