@@ -32,13 +32,36 @@ node tryjson
 [stackexchange-url]: https://stackexchange.com/users/303952/rsp
 [stackexchange-img]: https://stackexchange.com/users/flair/303952.png
 
+TL;DR
+-----
+### JSON.parse / JSON.stringify
+```js
+// this can crash your program
+// you need try/catch:
+object = JSON.parse(string);
+
+// this can crash your program
+// you need try/catch:
+string = tryjson.stringify(object);
+```
+### tryjson.parse / tryjson.stringify
+```js
+// no need for try/catch:
+string = tryjson.stringify(object);
+
+// no need for try/catch:
+object = tryjson.parse(string);
+```
+
 Why
 ---
 Not everyone knows that you should **always** run `JSON.parse` inside of a `try/catch` block or otherwise you risk your application crashing on bad input. Most of the examples of using `JSON.parse` posted online never does that. People usually assume that you will get `undefined` on bad or empty input but you don't.
 
 **Remember: Always `try { JSON.parse() }` or use `tryjson.parse()`**
 
-This module works like many people assume that the built-in `JSON` works and can simplify some common code. People usually write:
+This module works like many people assume that the built-in `JSON` works and can simplify some common code.
+
+People usually write:
 ```js
 object = JSON.parse(string);
 ```
@@ -63,7 +86,10 @@ if you want to locally override `JSON` with:
 ```js
 var JSON = require('tryjson');
 ```
-
+You can even get a different value than the default `undefined` for invalid JSON:
+```js
+object = JSON.parse(string, {error: 'Invalid JSON'});
+```
 How it works
 ------------
 This module works like `JSON.parse` (and in fact it uses `JSON.parse`) but instead of throwing exceptions it returns `undefined` on failure (or some other fallback value if provided). This is not always a desired behaviour but sometimes it is.
