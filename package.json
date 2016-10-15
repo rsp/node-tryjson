@@ -1,6 +1,6 @@
 {
   "name": "tryjson",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Try to parse a string as JSON and return undefined on failure",
   "main": "index.js",
   "scripts": {
