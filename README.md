@@ -42,7 +42,7 @@ object = JSON.parse(string);
 
 // this can crash your program
 // you need try/catch:
-string = tryjson.stringify(object);
+string = JSON.stringify(object);
 ```
 ### tryjson.parse / tryjson.stringify
 ```js
